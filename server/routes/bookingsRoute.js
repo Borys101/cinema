@@ -45,7 +45,11 @@ router.post("/book-show", authMiddleWare, async (req, res) => {
 
         res.send({
             success: true,
+<<<<<<< HEAD
             message: "Show booked successfully",
+=======
+            message: "Квитки успішно заброньовані",
+>>>>>>> my-recovered-branch
             data: newBooking,
         });
     } catch (error) {

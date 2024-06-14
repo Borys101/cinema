@@ -10,6 +10,7 @@ const theatreSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+<<<<<<< HEAD
     phone: {
       type: String,
       required: true,
@@ -26,6 +27,8 @@ const theatreSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+=======
+>>>>>>> my-recovered-branch
   },
   { timestamps: true }
 );

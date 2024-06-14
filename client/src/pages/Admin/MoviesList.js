@@ -125,7 +125,11 @@ function MoviesList() {
             <div className="flex justify-end mb-1">
                 <Button 
                     title="Додати фільм"
+<<<<<<< HEAD
                     variant="outlined"
+=======
+                    variant="white"
+>>>>>>> my-recovered-branch
                     onClick={() => {
                         setShowMovieFormModal(true);
                         setFormType("add");
@@ -133,7 +137,11 @@ function MoviesList() {
                 />
             </div>
 
+<<<<<<< HEAD
             <Table columns={columns} dataSource={movies}/>
+=======
+            <Table columns={columns} dataSource={movies} pagination={false}/>
+>>>>>>> my-recovered-branch
 
             {showMovieFormModal && <MoviesForm 
                 showMovieFormModal={showMovieFormModal}

@@ -37,7 +37,11 @@ function Home() {
                 {movies.filter(movie => movie.title.toLowerCase().includes(searchText.toLowerCase())).map(movie => (
                     <Col span={6}>
                         <div 
+<<<<<<< HEAD
                             className="card flex flex-col gap-1 cursor-pointer"
+=======
+                            className="card flex flex-col gap-1 cursor-pointer mb-2"
+>>>>>>> my-recovered-branch
                             onClick={() => navigate(`/movie/${movie._id}?date=${moment().format("YYYY-MM-DD")}`)}
                         >
                             <img src={movie.poster} alt='poster' height={200} width="100%"/>
@@ -48,6 +52,13 @@ function Home() {
                     </Col>
                 ))}
             </Row>
+<<<<<<< HEAD
+=======
+            <div className='promotions flex' onClick={() => navigate("/promotions")}>
+                Акції та пропозиції
+                <i class="ri-percent-line ml-1"></i>
+            </div>
+>>>>>>> my-recovered-branch
         </div>
     )
 }

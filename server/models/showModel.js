@@ -35,6 +35,13 @@ const showSchema = new mongoose.Schema({
         ref: 'theatres',
         required: true
     },
+<<<<<<< HEAD
+=======
+    discount: {
+        type: Number,
+        default: 0
+    }
+>>>>>>> my-recovered-branch
 } , { timestamps: true });
 
 const Show = mongoose.model('shows', showSchema);
