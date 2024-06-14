@@ -89,11 +89,7 @@ function TheatresForMovie() {
         <hr />
         <div className='mt-1'>
             <h1 className="text-xl uppercase">
-<<<<<<< HEAD
-                Theatres
-=======
                 Театри
->>>>>>> my-recovered-branch
             </h1>
         </div>
 

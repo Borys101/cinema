@@ -10,25 +10,6 @@ const theatreSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-<<<<<<< HEAD
-    phone: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
-    },
-    isActive: {
-      type: Boolean,
-      default: false,
-    },
-=======
->>>>>>> my-recovered-branch
   },
   { timestamps: true }
 );

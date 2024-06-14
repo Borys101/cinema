@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react';
-=======
 import React, { useEffect } from 'react';
->>>>>>> my-recovered-branch
 import { GetCurrentUser } from '../apicalls/users';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom'
@@ -43,14 +39,9 @@ function ProtectedRoute({children}) {
 
     return (
         user && (
-<<<<<<< HEAD
-            <div className='layout p-1'>
-                <div className="header bg-primary flex justify-between p-2">
-=======
             <>
                 <div className='layout p-1'>
                 <div className="header bg-secondary br-2 flex justify-between p-3">
->>>>>>> my-recovered-branch
                     <div>
                         <h1 className="text-2xl text-white cursor-pointer"
                             onClick={() => navigate("/")}
@@ -58,27 +49,6 @@ function ProtectedRoute({children}) {
                             MOVIES
                         </h1>
                     </div>
-<<<<<<< HEAD
-                    <div className='bg-white p-1 flex gap-1'>
-                        <i className="ri-shield-user-line text-primary"></i>
-                        <h1 className="text-sm underline"
-                            onClick={() => {
-                                if(user.isAdmin) {
-                                    navigate("/admin")
-                                } else {
-                                    navigate("/profile")
-                                }
-                            }}
-                        >
-                            {user.name}
-                        </h1>
-                        <i className="ri-logout-box-r-line ml-2"
-                            onClick={() => {
-                                localStorage.removeItem("token");
-                                navigate("/login")
-                            }}>
-                        </i>
-=======
                     <div className="flex">
                         <div className='mt-1 flex'>
                             <i class="ri-coin-fill pr-03" style={{ color: "yellow", fontSize: "24px" }}></i>
@@ -104,17 +74,13 @@ function ProtectedRoute({children}) {
                                 }}>
                             </i>
                         </div>
->>>>>>> my-recovered-branch
                     </div>
                 </div>
                 <div className="content mt-1 p-1">
                     {children}
                 </div>
             </div>
-<<<<<<< HEAD
-=======
             </>
->>>>>>> my-recovered-branch
         )
     )
 }

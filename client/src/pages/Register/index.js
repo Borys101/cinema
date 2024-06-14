@@ -68,19 +68,12 @@ function Register() {
                     </Form.Item>
                     <div className='flex flex-col mt-2 gap-1'>
                         <Button
-<<<<<<< HEAD
-=======
                         classNames="bg-secondary"
->>>>>>> my-recovered-branch
                             fullWidth
                             title='REGISTER'
                             type='submit' 
                         />
-<<<<<<< HEAD
-                        <Link className='text-primary' to="/login">Уже маєте обліковий запис? Увійти </Link>
-=======
                         <Link className='text-secondary' to="/login">Уже маєте обліковий запис? Увійти </Link>
->>>>>>> my-recovered-branch
                     </div>
                 </Form>
             </div>

@@ -14,10 +14,6 @@ function Bookings() {
             const response = await GetBookingsOfUser();
             if (response.success) {
                 setBookings(response.data);
-<<<<<<< HEAD
-                console.log(response.data);
-=======
->>>>>>> my-recovered-branch
             } else {
                 message.error(response.message);
             }

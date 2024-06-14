@@ -1,10 +1,7 @@
 const router = require("express").Router();
 const Theatre = require("../models/theatreModel");
 const Show = require("../models/showModel");
-<<<<<<< HEAD
-=======
 const Movie = require("../models/movieModel");
->>>>>>> my-recovered-branch
 const authMiddleware = require("../middlewares/authMiddleware");
 
 //Додати новий кінотеатр
@@ -27,11 +24,7 @@ router.post("/add-theatre", authMiddleware, async (req, res) => {
 //Отримати усі кінотеатри
 router.get("/get-all-theatres", authMiddleware, async (req, res) => {
     try {
-<<<<<<< HEAD
-        const theatres = await Theatre.find().populate("owner").sort({ createdAt: -1 });
-=======
         const theatres = await Theatre.find().sort({ createdAt: -1 });
->>>>>>> my-recovered-branch
         res.send({
             success: true,
             message: "Кінотеатри успішно завантажені",
@@ -45,26 +38,6 @@ router.get("/get-all-theatres", authMiddleware, async (req, res) => {
     }
 })
 
-<<<<<<< HEAD
-//Отримати кінотеатри, додані користувачем
-router.post("/get-all-theatres-by-owner", authMiddleware, async (req, res) => {
-    try {
-        const theatres = await Theatre.find({ owner: req.body.owner }).sort({ createdAt: -1 });
-        res.send({
-            success: true,
-            message: "Кінотеатри були успішно отримані",
-            data: theatres
-        })
-    } catch (error) {
-        res.send({
-            success: false,
-            message: error.message
-        })
-    }
-})
-
-=======
->>>>>>> my-recovered-branch
 //Оновити інформацію про кінотеатр
 router.post("/update-theatre", authMiddleware, async (req, res) => {
     try {
@@ -195,9 +168,6 @@ router.post("/get-show-by-id", authMiddleware, async (req, res) => {
         })
     } catch (error) {
         res.send({
-<<<<<<< HEAD
-            message: false,
-=======
             success: false,
             message: error.message
         })
@@ -240,7 +210,6 @@ router.post("/change-discount", authMiddleware, async (req, res) => {
     } catch (error) {
         res.send({
             success: false,
->>>>>>> my-recovered-branch
             message: error.message
         })
     }

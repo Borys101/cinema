@@ -10,8 +10,6 @@
     width: 100%;
 }
 
-<<<<<<< HEAD
-=======
 .w-60 {
     width: 60%;
 }
@@ -20,7 +18,6 @@
     width: 75%;
 }
 
->>>>>>> my-recovered-branch
 .text-sm {
     font-size: 14px;
 }
@@ -51,11 +48,8 @@
 
 .br-1 {
     border-radius: 4px;
-<<<<<<< HEAD
-=======
 }
 
 .br-2 {
     border-radius: 10px;
->>>>>>> my-recovered-branch
 }

@@ -1,11 +1,6 @@
 :root {
-<<<<<<< HEAD
-    --colour-primary: #002E2A;
-    --colour-secondary: #e6b412;
-=======
     --colour-primary: #F0E6FC;
     --colour-secondary: #212144;
->>>>>>> my-recovered-branch
 }
 
 .bg-primary {
@@ -46,11 +41,8 @@
 
 .border-secondary {
     border-color: var(--colour-secondary);
-<<<<<<< HEAD
-=======
 }
 
 .text-black {
     color: #000;
->>>>>>> my-recovered-branch
 }

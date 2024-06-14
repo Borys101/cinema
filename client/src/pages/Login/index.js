@@ -65,11 +65,7 @@ function Login() {
                             title='LOGIN'
                             type='submit' 
                         />
-<<<<<<< HEAD
-                        <Link className='text-primary' to="/register">Немає облікового запису? Зареєструватись</Link>
-=======
                         <Link className='text-secondary' to="/register">Немає облікового запису? Зареєструватись</Link>
->>>>>>> my-recovered-branch
                     </div>
                 </Form>
             </div>

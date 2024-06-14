@@ -1,15 +1,4 @@
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import { useDispatch } from 'react-redux';
-import { GetAllTheatres, UpdateTheatre } from '../../apicalls/theatres';
-import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
-import { Table, message } from 'antd';
-
-function TheatresList() {
-
-    const [ theatres, setTheatres ] = useState([]);
-
-=======
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAllTheatres, UpdateTheatre } from '../../apicalls/theatres';
 import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
@@ -27,7 +16,6 @@ function TheatresList() {
     const [ formType, setFormType ] = useState("add");
     const [ theatres, setTheatres ] = useState([]);
     const [ openShowsModal, setOpenShowsModal ] = useState(false);
->>>>>>> my-recovered-branch
     const dispatch = useDispatch();
 
     const getData = async () => {
@@ -46,21 +34,10 @@ function TheatresList() {
         }
     }
 
-<<<<<<< HEAD
-    const handleStatusChange = async (theatre) => {
-        try {
-            dispatch(ShowLoading());
-            const response = await UpdateTheatre({
-                theatreId: theatre._id,
-                ...theatre,
-                isActive: !theatre.isActive
-            });
-=======
     const handleDelete = async (id) => {
         try {
             dispatch(ShowLoading());
             const response = await DeleteTheatre({ theatreId: id });
->>>>>>> my-recovered-branch
             if (response.success) {
                 message.success(response.message);
                 getData();
@@ -84,41 +61,6 @@ function TheatresList() {
             dataIndex: "address"
         },
         {
-<<<<<<< HEAD
-            title: "Номер телефону",
-            dataIndex: "phone"
-        },
-        {
-            title: "Електрона пошта",
-            dataIndex: "email"
-        },
-        {
-            title: "Власник",
-            dataIndex: "owner",
-            render: (text, record) => {
-                return record.owner.name
-            }
-        },
-        {
-            title: "Статус",
-            dataIndex: "isActive",
-            render: (text, record) => {
-                if (text) {
-                    return "Схвалено"
-                } else {
-                    return "Очікує / Заблоковано"
-                }
-            }
-        },
-        {
-            title: "Дії",
-            dataIndex: "action",
-            render: (text, record) => {
-                return (<div className="flex gap-1">
-                    {record.isActive && <span className='underline' onClick={() => handleStatusChange(record)}>Заблокувати</span>}
-                    {!record.isActive && <span className='underline'onClick={() => handleStatusChange(record)}>Схвалити</span>}
-                </div>)
-=======
             title: "Дії",
             dataIndex: "action",
             render: (text, record) => {
@@ -146,7 +88,6 @@ function TheatresList() {
                             Сеанси
                         </span>}
                 </div>
->>>>>>> my-recovered-branch
             }
         }
     ]
@@ -156,10 +97,6 @@ function TheatresList() {
     }, [])
     return (
         <div>
-<<<<<<< HEAD
-
-            <Table columns={columns} dataSource={theatres} />
-=======
             <div className="flex justify-end mb-1">
                 <Button 
                     variant="white" 
@@ -189,7 +126,6 @@ function TheatresList() {
                 setOpenShowsModal={setOpenShowsModal}
                 theatre={selectedTheatre}    
             />}
->>>>>>> my-recovered-branch
         </div>
     );
 }

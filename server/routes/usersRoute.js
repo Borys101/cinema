@@ -89,8 +89,6 @@ router.get('/get-current-user', authMiddleware , async (req, res) => {
     }
 })
 
-<<<<<<< HEAD
-=======
 //Додати бали за купівлю квитків
 router.post("/add-points", authMiddleware, async (req, res) => {
     try {
@@ -122,5 +120,4 @@ router.post("/remove-points", authMiddleware, async (req, res) => {
     }
 });
 
->>>>>>> my-recovered-branch
 module.exports = router;

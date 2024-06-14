@@ -20,14 +20,11 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-<<<<<<< HEAD
-=======
     points: {
       type: Number,
       required: true,
       default: 0,
     }
->>>>>>> my-recovered-branch
   },
   {
     timestamps: true,

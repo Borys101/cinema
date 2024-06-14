@@ -7,24 +7,17 @@ import { GetShowById } from '../../apicalls/theatres';
 import moment from 'moment'
 import StripeCheckout from 'react-stripe-checkout';
 import Button from "../../components/Button"
-<<<<<<< HEAD
-import { BookShowTickets, MakePayment } from '../../apicalls/bookings';
-=======
 import { AddPointsToUser, BookShowTickets, MakePayment, RemovePointsFromUser } from '../../apicalls/bookings';
 import { AddPoints, RemovePoints } from '../../redux/usersSlice';
 import { Switch } from "antd";
 import { InputNumber } from "antd";
->>>>>>> my-recovered-branch
 
 function BookShow() {
   const { user } = useSelector(state => state.users);
   const [show, setShow] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
-<<<<<<< HEAD
-=======
   const [isUsePoints, setIsUsePoints] = useState(false);
   const [usedPoints, setUsedPoints] = useState(0);
->>>>>>> my-recovered-branch
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -45,8 +38,6 @@ function BookShow() {
     }
   }
 
-<<<<<<< HEAD
-=======
   const onUsePointsChange = (e) => {
     setIsUsePoints(e);
   }
@@ -64,7 +55,6 @@ function BookShow() {
     }
   };
 
->>>>>>> my-recovered-branch
   const getSeats = () => {
     const columns = 12;
     const totalSeats = show.totalSeats;
@@ -119,12 +109,6 @@ function BookShow() {
       const response = await BookShowTickets({
         show: params.id,
         seats: selectedSeats,
-<<<<<<< HEAD
-        transactionId,
-        user: user._id,
-      });
-      if (response.success) {
-=======
         transactionId: transactionId || "points",
         user: user._id,
       });
@@ -133,7 +117,6 @@ function BookShow() {
         await RemovePointsFromUser({ points: usedPoints })
         dispatch(AddPoints(Math.floor((selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) - usedPoints) / 10)))
         dispatch(RemovePoints(usedPoints));
->>>>>>> my-recovered-branch
         message.success(response.message);
         navigate("/profile");
       } else {
@@ -168,10 +151,6 @@ function BookShow() {
 
   useEffect(() => {
     getData();
-<<<<<<< HEAD
-=======
-    console.log(123);
->>>>>>> my-recovered-branch
   }, [])
   return (
     show && <div>
@@ -195,25 +174,6 @@ function BookShow() {
       {selectedSeats.length > 0 && (
         <div className="mt-2 flex justify-center gap-2 items-center flex-col">
           <div className="flex justify-center">
-<<<<<<< HEAD
-            <div className="card flex uppercase p-2 gap-3">
-              <h1 className="text-sm">
-                <b>Обрані місця: {selectedSeats.join(", ")}</b>
-              </h1>
-              <h1 className="text-sm">
-                <b>Вартість: {selectedSeats.length * show.ticketPrice} грн</b>
-              </h1>
-            </div>
-          </div>
-          <StripeCheckout
-            currency='UAH'
-            token={onToken}
-            amount={selectedSeats.length * show.ticketPrice * 100}
-            stripeKey='pk_test_51OFy3vDFICM3o74tYKqk2BlTWbP9lPIgAGP3GXWXIKMGBIq5pTsoTHPD0eeso8cVmBAE5mBeSFLoLTgmYvbILYf7003nuA2gDO'
-          >
-            <Button title='Book now' />
-          </StripeCheckout>
-=======
             <div className="card">
               <div className='flex uppercase p-2 gap-3'>
                 <h1 className="text-sm">
@@ -246,7 +206,6 @@ function BookShow() {
                 <Button title='Забронювати' onClick={handleBookButtonClick} />
               </StripeCheckout>}
           </div>
->>>>>>> my-recovered-branch
         </div>
       )}
     </div>
