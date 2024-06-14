@@ -89,7 +89,7 @@ function TheatresForMovie() {
         <hr />
         <div className='mt-1'>
             <h1 className="text-xl uppercase">
-                Theatres
+                Театри
             </h1>
         </div>
 

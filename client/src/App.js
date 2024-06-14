@@ -13,6 +13,7 @@ import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import TheatresForMovie from './pages/TheatresForMovie';
 import BookShow from './pages/BookShow';
+import Promotions from './pages/Promotions/Promotions';
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/book-show/:id" element={<ProtectedRoute><BookShow /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+          <Route path="/promotions" element={<ProtectedRoute><Promotions /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

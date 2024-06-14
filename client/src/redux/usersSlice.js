@@ -8,10 +8,16 @@ const usersSlice = createSlice({
     reducers: {
         SetUser: (state, action) => {
             state.user = action.payload;
+        },
+        AddPoints: (state, action) => {
+            state.user.points += action.payload;
+        },
+        RemovePoints: (state, action) => {
+            state.user.points -= action.payload;
         }
     }
 })
 
-export const { SetUser } = usersSlice.actions;
+export const { SetUser, AddPoints, RemovePoints } = usersSlice.actions;
 
 export default usersSlice.reducer;

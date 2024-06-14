@@ -89,4 +89,35 @@ router.get('/get-current-user', authMiddleware , async (req, res) => {
     }
 })
 
+//Додати бали за купівлю квитків
+router.post("/add-points", authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId);
+        await User.findByIdAndUpdate(req.body.userId, { points: user.points + req.body.points });
+        res.send({
+            success: true,
+        });
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message,
+        });
+    }
+});
+
+router.post("/remove-points", authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findById(req.body.userId);
+        await User.findByIdAndUpdate(req.body.userId, { points: user.points - req.body.points });
+        res.send({
+            success: true,
+        });
+    } catch (error) {
+        res.send({
+            success: false,
+            message: error.message,
+        });
+    }
+});
+
 module.exports = router;

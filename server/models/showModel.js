@@ -35,6 +35,10 @@ const showSchema = new mongoose.Schema({
         ref: 'theatres',
         required: true
     },
+    discount: {
+        type: Number,
+        default: 0
+    }
 } , { timestamps: true });
 
 const Show = mongoose.model('shows', showSchema);

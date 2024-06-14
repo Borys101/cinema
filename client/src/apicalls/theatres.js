@@ -95,3 +95,23 @@ export const GetShowById = async (payload) => {
         return error.response;
     }
 }
+
+//Отримати шоу зі знижкою
+export const GetAllShowsWithDiscount = async () => {
+    try {
+        const response = await axiosInstance.get("http://localhost:4000/api/theatres/get-all-shows-with-discount");
+        return response.data;
+    } catch (error) {
+        return error.response;
+    }
+}
+
+//Змінити знижку
+export const ChangeDiscount = async (payload) => {
+    try {
+        const response = await axiosInstance.post("http://localhost:4000/api/theatres/change-discount", payload);
+        return response.data;
+    } catch (error) {
+        return error.response;
+    }
+}

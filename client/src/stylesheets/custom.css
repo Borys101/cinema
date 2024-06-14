@@ -91,7 +91,25 @@ thead th {
     border-radius: 50%;
     animation: loader-anim 1s linear infinite;
 }
+
+.promotions {
+    animation: jump 0.5s infinite;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #FF7272;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 2px;
+    cursor: pointer;
+    color: white;
+}
   
+@keyframes jump {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
+}  
 
 /* loader animation */
 @keyframes loader-anim {

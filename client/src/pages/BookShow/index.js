@@ -7,12 +7,17 @@ import { GetShowById } from '../../apicalls/theatres';
 import moment from 'moment'
 import StripeCheckout from 'react-stripe-checkout';
 import Button from "../../components/Button"
-import { BookShowTickets, MakePayment } from '../../apicalls/bookings';
+import { AddPointsToUser, BookShowTickets, MakePayment, RemovePointsFromUser } from '../../apicalls/bookings';
+import { AddPoints, RemovePoints } from '../../redux/usersSlice';
+import { Switch } from "antd";
+import { InputNumber } from "antd";
 
 function BookShow() {
   const { user } = useSelector(state => state.users);
   const [show, setShow] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [isUsePoints, setIsUsePoints] = useState(false);
+  const [usedPoints, setUsedPoints] = useState(0);
   const params = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,6 +37,23 @@ function BookShow() {
       message.error(error.message);
     }
   }
+
+  const onUsePointsChange = (e) => {
+    setIsUsePoints(e);
+  }
+
+  const onCountPointsChange = (e) => {
+    setUsedPoints(e);
+    console.log(e);
+    console.log(selectedSeats.length * show.ticketPrice)
+
+  }
+
+  const handleBookButtonClick = async () => {
+    if (selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) - usedPoints === 0) {
+      await book(null);
+    }
+  };
 
   const getSeats = () => {
     const columns = 12;
@@ -87,10 +109,14 @@ function BookShow() {
       const response = await BookShowTickets({
         show: params.id,
         seats: selectedSeats,
-        transactionId,
+        transactionId: transactionId || "points",
         user: user._id,
       });
       if (response.success) {
+        await AddPointsToUser({ points: Math.floor((selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) - usedPoints) / 10) })
+        await RemovePointsFromUser({ points: usedPoints })
+        dispatch(AddPoints(Math.floor((selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) - usedPoints) / 10)))
+        dispatch(RemovePoints(usedPoints));
         message.success(response.message);
         navigate("/profile");
       } else {
@@ -125,6 +151,7 @@ function BookShow() {
 
   useEffect(() => {
     getData();
+    console.log(123);
   }, [])
   return (
     show && <div>
@@ -148,23 +175,38 @@ function BookShow() {
       {selectedSeats.length > 0 && (
         <div className="mt-2 flex justify-center gap-2 items-center flex-col">
           <div className="flex justify-center">
-            <div className="card flex uppercase p-2 gap-3">
-              <h1 className="text-sm">
-                <b>Обрані місця: {selectedSeats.join(", ")}</b>
-              </h1>
-              <h1 className="text-sm">
-                <b>Вартість: {selectedSeats.length * show.ticketPrice} грн</b>
-              </h1>
+            <div className="card">
+              <div className='flex uppercase p-2 gap-3'>
+                <h1 className="text-sm">
+                  <b>Обрані місця: {selectedSeats.join(", ")}</b>
+                </h1>
+                <h1 className="text-sm">
+                  {!show.discount ? <b>Вартість: {(selectedSeats.length * show.ticketPrice - usedPoints).toFixed(2)} грн</b> : <b>Вартість: <del>{(selectedSeats.length * show.ticketPrice - usedPoints).toFixed(2)}</del> {((selectedSeats.length * show.ticketPrice) / 100 * (100 - show.discount) - usedPoints).toFixed(2)} грн </b>}
+                </h1>
+              </div>
+              <div className='flex uppercase p-1 justify-center'>
+                <h1 className='text-sm'>
+                  <b className='pr-1'>Використати бали ({user.points})</b>
+                  <Switch size='small' onChange={onUsePointsChange} disabled={!user.points} />
+                </h1>
+              </div>
+              {isUsePoints && <div className='flex justify-center m-1'>
+                <InputNumber placeholder='Введіть кількість балів' className='w-60' max={user.points > show.ticketPrice ? show.ticketPrice * selectedSeats.length * (1 - show.discount / 100) : user.points} onChange={onCountPointsChange} />
+              </div>
+              }
             </div>
           </div>
-          <StripeCheckout
-            currency='UAH'
-            token={onToken}
-            amount={selectedSeats.length * show.ticketPrice * 100}
-            stripeKey='pk_test_51OFy3vDFICM3o74tYKqk2BlTWbP9lPIgAGP3GXWXIKMGBIq5pTsoTHPD0eeso8cVmBAE5mBeSFLoLTgmYvbILYf7003nuA2gDO'
-          >
-            <Button title='Забронювати' />
-          </StripeCheckout>
+          <div className='flex items-center gap-3'>
+            {usedPoints === selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) ? <Button title='Забронювати' onClick={handleBookButtonClick} />
+              : <StripeCheckout
+                currency='UAH'
+                token={onToken}
+                amount={(selectedSeats.length * show.ticketPrice * (1 - show.discount / 100) - usedPoints) * 100}
+                stripeKey='pk_test_51OFy3vDFICM3o74tYKqk2BlTWbP9lPIgAGP3GXWXIKMGBIq5pTsoTHPD0eeso8cVmBAE5mBeSFLoLTgmYvbILYf7003nuA2gDO'
+              >
+                <Button title='Забронювати' onClick={handleBookButtonClick} />
+              </StripeCheckout>}
+          </div>
         </div>
       )}
     </div>

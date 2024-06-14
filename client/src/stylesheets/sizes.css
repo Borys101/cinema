@@ -10,6 +10,14 @@
     width: 100%;
 }
 
+.w-60 {
+    width: 60%;
+}
+
+.w-75 {
+    width: 75%;
+}
+
 .text-sm {
     font-size: 14px;
 }

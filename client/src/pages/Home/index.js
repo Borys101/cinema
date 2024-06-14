@@ -48,6 +48,10 @@ function Home() {
                     </Col>
                 ))}
             </Row>
+            <div className='promotions flex' onClick={() => navigate("/promotions")}>
+                Акції та пропозиції
+                <i class="ri-percent-line ml-1"></i>
+            </div>
         </div>
     )
 }

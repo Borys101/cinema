@@ -32,3 +32,27 @@ export const GetBookingsOfUser = async () => {
         return error.response.data;
     }
 }
+
+export const AddPointsToUser = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      "http://localhost:4000/api/users/add-points",
+      payload
+    );
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
+
+export const RemovePointsFromUser = async (payload) => {
+  try {
+    const response = await axiosInstance.post(
+      "http://localhost:4000/api/users/remove-points",
+      payload
+    );
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+};
